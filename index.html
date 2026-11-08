@@ -2,7 +2,7 @@
 <html lang = "en">
   <head>
     <meta charset="utf-8">
-    <meta name= "viewport" content= "width =device-width, intial-scale=1.0">
+    <meta name= "viewport" content= "width =device-width, initial-scale=1.0">
     <title>Profile card</title> 
     <style>
       body{
@@ -17,21 +17,25 @@
         
       }
       .card{
+        width: 90%;
+        max-width: 320px;
         background-color:#ffffff;
-        width: 280px;
-        padding: 24px;
-        border-radius: 14px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-
+        margin: 40px auto;
+        padding: 24px 16px;
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        position:relative;
         text-align: center;
         
       }
-      .Profile-image{
-        width: 100px;
-        height: 100px;
+      .profile-image{
+        width: 120px;
+        height: 120px;
         border-radius:50%;
         object-fit: cover;
-        border:3px solid #000000;
+        display: block;
+        margin: 0px auto 16px auto ;
+        border: 3px solid #007bff;
       }
       .name{
         margin: 14px 0 4px 0;
@@ -79,11 +83,11 @@
   </head>
 <body>
 <div class="card">
-  <img src="https://github.com/thehimanshuchaurasia.png" alt="Himanshu Chaurasia" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;">
+  <img src="https://github.com/thehimanshuchaurasia.png" alt="Profile Picture" class="profile-image">
 
   <h2 class="name">Himanshu Chaurasia</h2>
-  <p class="role"> Frontent developer</p>
-  <p class="bio">Learning web devlopment step by step. Passionate about coding and building clean UIs</p>
+  <p class="role"> Frontend Developer</p>
+  <p class="bio">Learning web development step by step. Passionate about coding and building clean UIs</p>
   <p class="followers">followers:<span id="count">100 </span></p>
   <button class="btn" id="connectbtn">connect</button>
 </div>
