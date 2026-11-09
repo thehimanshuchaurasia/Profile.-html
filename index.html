@@ -92,23 +92,49 @@
   <button class="btn" id="connectbtn">connect</button>
 </div>
 <script>
-  const btn=document.getElementById("connectbtn");
-  const countElement=document.getElementById("count");
-  let followers=100;
-  btn.addEventListener("click",function(){
-    if (btn.innerText==="connect"){
-      btn.innerText= "connected✓";
-    btn.style.background="#029911";
-    followers=followers + 1;
-    countElement.innerText=followers;
-    
-    } else{
-      btn.innerText="connect";
-      btn.style.background="#0404cc";
-      followers=followers -1 ;
-      countElement.innerText=followers;
+  
+
+  const btn = document.getElementById("connectbtn");
+  const countElement = document.getElementById("count");
+
+  // 1. Check karo browser me saved data hai ya nahi
+  let savedFollowers = localStorage.getItem("followersCount");
+  let savedStatus = localStorage.getItem("connectStatus");
+
+  // Agar data mila toh wahi dikhao, warna default 100
+  let followers = savedFollowers !== null ? parseInt(savedFollowers) : 100;
+  countElement.innerText = followers;
+
+  // Button ka initial state set karo saved status ke hisaab se
+  if (savedStatus === "connected") {
+    btn.innerText = "connected✓";
+    btn.style.background = "#029911";
+  } else {
+    btn.innerText = "connect";
+    btn.style.background = "#007bff";
+  }
+
+  // 2. Click hone par count aur state dono ko localStorage me save karo
+  btn.addEventListener("click", function() {
+    if (btn.innerText === "connect") {
+      btn.innerText = "connected✓";
+      btn.style.background = "#029911";
+      followers = followers + 1;
+
+      localStorage.setItem("followersCount", followers);
+      localStorage.setItem("connectStatus", "connected");
+    } else {
+      btn.innerText = "connect";
+      btn.style.background = "#007bff";
+      followers = followers - 1;
+
+      localStorage.setItem("followersCount", followers);
+      localStorage.setItem("connectStatus", "not_connected");
     }
+    countElement.innerText = followers;
   });
+
+
 </script>
 </body>
 </html>
