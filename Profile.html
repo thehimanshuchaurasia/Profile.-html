@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang = "en">
+  <head>
+    <meta charset="utf-8">
+    <meta name= "viewport" content= "width =device-width, initial-scale=1.0">
+    <title>Profile card</title> 
+    <style>
+      body{
+        margin: 0;
+        padding: 0;
+        font-family:Arial, Helvetica, sans-serif ;
+        background-color: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        
+      }
+      .card{
+        width: 90%;
+        max-width: 320px;
+        background-color:#ffffff;
+        margin: 40px auto;
+        padding: 24px 16px;
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        position:relative;
+        text-align: center;
+        
+      }
+      .profile-image{
+        width: 120px;
+        height: 120px;
+        border-radius:50%;
+        object-fit: cover;
+        display: block;
+        margin: 0px auto 16px auto ;
+        border: 3px solid #007bff;
+      }
+      .name{
+        margin: 14px 0 4px 0;
+        font-size: 20px ;
+        color: #111111;
+      }
+          .role{
+            margin: 0 0 12px 0 ;
+            font-size: 14px;
+            color:#000499;
+            font-weight: 600 ;
+          }
+      .bio{
+        font-size: 13px;
+        color: #666666;
+        line-height: 1.5;
+        margin-bottom: 12px;
+      }
+      .followers{
+        font-size: 14px;
+        font-weight: bold;
+        color: #555555;
+        margin-bottom: 20px;
+        
+      }
+      
+      #count{
+      
+        color: #991122;
+        
+      }
+        .btn{
+          background-color:#007bff;
+          color: #ffffff;
+          border: none;
+          padding: 10px 24px;
+          font-size: 14px;
+          font-weight: bold;
+          border-radius: 20px;
+          cursor: pointer;
+        }
+      
+      </style>
+    
+  </head>
+<body>
+<div class="card">
+  <img src="https://github.com/thehimanshuchaurasia.png" alt="Profile Picture" class="profile-image">
+
+  <h2 class="name">Himanshu Chaurasia</h2>
+  <p class="role"> Frontend Developer</p>
+  <p class="bio">Learning web development step by step. Passionate about coding and building clean UIs</p>
+  <p class="followers">followers:<span id="count">100 </span></p>
+  <button class="btn" id="connectbtn">connect</button>
+</div>
+<script>
+  
+
+  const btn = document.getElementById("connectbtn");
+  const countElement = document.getElementById("count");
+
+  // 1. Check karo browser me saved data hai ya nahi
+  let savedFollowers = localStorage.getItem("followersCount");
+  let savedStatus = localStorage.getItem("connectStatus");
+
+  // Agar data mila toh wahi dikhao, warna default 100
+  let followers = savedFollowers !== null ? parseInt(savedFollowers) : 100;
+  countElement.innerText = followers;
+
+  // Button ka initial state set karo saved status ke hisaab se
+  if (savedStatus === "connected") {
+    btn.innerText = "connected✓";
+    btn.style.background = "#029911";
+  } else {
+    btn.innerText = "connect";
+    btn.style.background = "#007bff";
+  }
+
+  // 2. Click hone par count aur state dono ko localStorage me save karo
+  btn.addEventListener("click", function() {
+    if (btn.innerText === "connect") {
+      btn.innerText = "connected✓";
+      btn.style.background = "#029911";
+      followers = followers + 1;
+
+      localStorage.setItem("followersCount", followers);
+      localStorage.setItem("connectStatus", "connected");
+    } else {
+      btn.innerText = "connect";
+      btn.style.background = "#007bff";
+      followers = followers - 1;
+
+      localStorage.setItem("followersCount", followers);
+      localStorage.setItem("connectStatus", "not_connected");
+    }
+    countElement.innerText = followers;
+  });
+
+
+</script>
+</body>
+</html>
